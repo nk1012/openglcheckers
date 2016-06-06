@@ -374,7 +374,7 @@ void draw_pieces(Checker board[SIZE][SIZE])
 						move_complete_ratio = (float)((current_time.tv_usec - animation_started.tv_usec) / 1000.0) / animation_duration;
 #endif
 						glTranslatef( move_complete_ratio / float(SIZE) * (float)(animated_to_x - animated_from_x), -move_complete_ratio / float(SIZE) * (float)(animated_from_y - animated_to_y), 0.3f);
-						if (debug) std::cout << "We've completed " << (move_complete_ratio * 100.f) << "% of the animation" << std::endl;
+						if (debug) std::cout << (move_complete_ratio * 100.f) << "% of the animation completed" << std::endl;
 #ifdef _WIN32
 						if (move_complete_ratio >= 1.0f) disable_animation();
 #else
@@ -647,7 +647,7 @@ void construct_tree_from_board(Checker board[SIZE][SIZE])
 				}
 			}
 		}
-		if (debug) std::cout << "There are " << game_tree[level].size() << " nodes in this level (" << level << ")" << std::endl;
+		if (debug) std::cout << "There are " << game_tree[level].size() << " nodes in the level (" << level << ")" << std::endl;
 	}
 	if (debug) std::cout << "Construction finished with " << pruned_count << " pruned" << std::endl;
 }
@@ -744,7 +744,7 @@ void make_best_move()
 //		if (debug) print_checker(game_board,best_parent->get_from_x(),best_parent->get_from_y(),"Trying to move a ");
 		enable_animation(best_parent->from_x,best_parent->from_y,best_parent->to_x,best_parent->to_y,1000.f);
 	}
-	else if (debug) std::cout << "There's no end node? How did that happen?" << std::endl;
+	else if (debug) std::cout << "No end node, something went wrong?" << std::endl;
 
 	for (int i = 0; i < MAX_SEARCH_DEPTH; ++i)
 	{
